@@ -777,6 +777,28 @@ class Character extends FlxSprite
 					dadHealthColor = '0xFFFFD800';
 
 				playAnim('idle');
+			case 'tankman':
+				frames = Paths.getSparrowAtlas('tank/Tankman','shared');
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'Sing Up', 24, false);
+				animation.addByPrefix('singDOWN', 'Sing Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Sing Left', 24, false);
+				animation.addByPrefix('singRIGHT', 'Sing Right', 24, false);
+
+				animation.addByPrefix('ugh', 'Ugh', 24, false);
+
+				addOffset("singUP", 42, 38);
+				addOffset("singLEFT", 98, -27);
+				addOffset("singRIGHT", -89, -51);
+				addOffset("singDOWN", 40, -120);
+				addOffset("ugh", 71, -40);
+					
+				playAnim('idle');
+				
+				if(isPlayer)
+					bfHealthColor = '0xFFFFFFFF';
+				if(!isPlayer)
+					dadHealthColor = '0xFFFFFFFF';
 			case 'bob':
 				tex = Paths.getSparrowAtlas('characters/bob_asset', 'shared');
 				frames = tex;
