@@ -1102,6 +1102,46 @@ class PlayState extends MusicBeatState
 					add(floorSkew);
 					//floorSkew.skew.x = camPos.x;
 				}
+			case 'tank': 
+				{
+					defaultCamZoom = 0.9;
+					curStage = 'tank';
+
+					var bg:FlxSprite = new FlxSprite(-200, -200).loadGraphic(Paths.image('sky', 'tank'));
+					bg.scrollFactor.set(0.1, 0.1);
+					add(bg);
+
+					var mountains:FlxSprite = new FlxSprite(-200, -50).loadGraphic(Paths.image('mountains', 'tank'));
+					mountains.scrollFactor.set(0.3, 0.3);
+					add(mountains);
+
+					var ruinsFar:FlxSprite = new FlxSprite(-200, 100).loadGraphic(Paths.image('ruinsFar', 'tank'));
+					ruinsFar.scrollFactor.set(0.4, 0.4);
+					add(ruinsFar);
+
+					var ruins:FlxSprite = new FlxSprite(-200, 200).loadGraphic(Paths.image('ruinsFar', 'tank'));
+					ruinsFar.scrollFactor.set(0.5, 0.5);
+					add(ruinsFar);
+
+					var groundFar:FlxSprite = new FlxSprite(-200, 470).loadGraphic(Paths.image('farGround','tank'));
+					groundFar.scrollFactor.set(0.6, 0.6);
+					add(groundFar);
+
+					tower = new FlxSprite(0, -100);
+					tower.frames = Paths.getSparrowAtlas('watchtower', 'tank');
+					tower.scrollFactor.set(0.6, 0.6);
+					tower.setGraphicSize(Std.int(tower.width * 0.6));
+					tower.animation.addByPrefix('idle', 'watchtower', 24, false);
+					add(tower);
+
+					var emptyTower:FlxSprite = new FlxSprite(900, -110).loadGraphic(Paths.image('emptyTower','tank'));
+					emptyTower.scrollFactor.set(0.6, 0.6);
+					emptyTower.setGraphicSize(Std.int(tower.width * 0.6));
+					add(emptyTower);
+
+					var ground:FlxSprite = new FlxSprite(-200, 600).loadGraphic(Paths.image('ground','tank'));
+					add(ground);
+				}
 			default:
 			{
 					defaultCamZoom = 0.9;
