@@ -34,6 +34,22 @@ class Character extends FlxSprite
 
 		switch (curCharacter)
 		{
+
+			case 'gf-tank':
+				// GIRLFRIEND CODE
+				tex = Paths.getSparrowAtlas('characters/gfTankmen');
+				frames = tex;
+				animation.addByIndices('sad', 'GF Crying at Gunpoint ', CoolUtil.numberArray(13), "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing at Gunpoint', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', CoolUtil.numberArray(30, 15), "", 24, false);
+
+				addOffset('sad', -2, -2);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+
+				playAnim('danceRight');
+
+				hpcolor = 0xFFA5004D;
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/GF_assets');
