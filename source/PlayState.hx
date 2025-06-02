@@ -4000,8 +4000,6 @@ class PlayState extends MusicBeatState
 						{
 							if (pressArray[coolNote.noteData])
 							{
-								if (mashViolations != 0)
-									mashViolations--;
 								scoreTxt.color = FlxColor.WHITE;
 								goodNoteHit(coolNote);
 							}
@@ -4013,19 +4011,6 @@ class PlayState extends MusicBeatState
 								if (pressArray[shit])
 									noteMiss(shit, null);
 						}
-
-					if(dontCheck && possibleNotes.length > 0 && FlxG.save.data.ghost && !FlxG.save.data.botplay)
-					{
-						if (mashViolations > 8)
-						{
-							trace('mash violations ' + mashViolations);
-							scoreTxt.color = FlxColor.RED;
-							noteMiss(0,null);
-						}
-						else
-							mashViolations++;
-					}
-
 				}
 				
 				notes.forEachAlive(function(daNote:Note)
@@ -4195,9 +4180,6 @@ class PlayState extends MusicBeatState
 			return possibleNotes.length + 1;
 		return possibleNotes.length;
 	}
-	
-	var mashing:Int = 0;
-	var mashViolations:Int = 0;
 
 	var etternaModeScore:Int = 0;
 
@@ -4206,54 +4188,10 @@ class PlayState extends MusicBeatState
 			var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition);
 
 			note.rating = Ratings.CalculateRating(noteDiff);
-
-			/* if (loadRep)
-			{
-				if (controlArray[note.noteData])
-					goodNoteHit(note, false);
-				else if (rep.replay.keyPresses.length > repPresses && !controlArray[note.noteData])
-				{
-					if (NearlyEquals(note.strumTime,rep.replay.keyPresses[repPresses].time, 4))
-					{
-						goodNoteHit(note, false);
-					}
-				}
-			} */
-			
-			if (controlArray[note.noteData])
-			{
-				goodNoteHit(note, (mashing > getKeyPresses(note)));
-				
-				/*if (mashing > getKeyPresses(note) && mashViolations <= 2)
-				{
-					mashViolations++;
-
-					goodNoteHit(note, (mashing > getKeyPresses(note)));
-				}
-				else if (mashViolations > 2)
-				{
-					// this is bad but fuck you
-					playerStrums.members[0].animation.play('static');
-					playerStrums.members[1].animation.play('static');
-					playerStrums.members[2].animation.play('static');
-					playerStrums.members[3].animation.play('static');
-					health -= 0.4;
-					trace('mash ' + mashing);
-					if (mashing != 0)
-						mashing = 0;
-				}
-				else
-					goodNoteHit(note, false);*/
-
-			}
 		}
 
-		function goodNoteHit(note:Note, resetMashViolation = true):Void
+		function goodNoteHit(note:Note):Void
 			{
-
-				if (mashing != 0)
-					mashing = 0;
-
 				var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition);
 
 				note.rating = Ratings.CalculateRating(noteDiff);
@@ -4262,12 +4200,6 @@ class PlayState extends MusicBeatState
 				// the oldest notes are at the end and are removed first
 				if (!note.isSustainNote)
 					notesHitArray.unshift(Date.now());
-
-				if (!resetMashViolation && mashViolations >= 1)
-					mashViolations--;
-
-				if (mashViolations < 0)
-					mashViolations = 0;
 
 				if (!note.wasGoodHit)
 				{
