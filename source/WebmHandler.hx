@@ -28,9 +28,6 @@ class WebmHandler
 	
 	public function makePlayer():Void
 	{
-		io = new WebmIoFile(vidPath);
-		webm = new WebmPlayer();
-		webm.fuck(io, false);
 		webm.addEventListener(WebmEvent.PLAY, function(e) {
 			onPlay();
 		});
@@ -50,7 +47,6 @@ class WebmHandler
 	public function updatePlayer():Void
 	{
 		io = new WebmIoFile(vidPath);
-		webm.fuck(io, false);
 	}
 	
 	public function play():Void
@@ -93,13 +89,11 @@ class WebmHandler
 	
 	public function pause():Void
 	{
-		webm.changePlaying(false);
 		paused = true;
 	}
 	
 	public function resume():Void
 	{
-		webm.changePlaying(true);
 		paused = false;
 	}
 	
@@ -116,7 +110,6 @@ class WebmHandler
 	public function clearPause():Void
 	{
 		paused = false;
-		webm.removePause();
 	}
 	
 	public function onStop():Void

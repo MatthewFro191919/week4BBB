@@ -1127,7 +1127,7 @@ class PlayState extends MusicBeatState
 					groundFar.scrollFactor.set(0.6, 0.6);
 					add(groundFar);
 
-					tower = new FlxSprite(0, -100);
+					var tower:FlxSprite = new FlxSprite(0, -100);
 					tower.frames = Paths.getSparrowAtlas('watchtower', 'tank');
 					tower.scrollFactor.set(0.6, 0.6);
 					tower.setGraphicSize(Std.int(tower.width * 0.6));
