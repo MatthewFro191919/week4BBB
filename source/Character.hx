@@ -49,7 +49,11 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 
-				hpcolor = 0xFFA5004D;
+				
+				if(isPlayer)
+					bfHealthColor = '0xFFA5004D';
+				if(!isPlayer)
+					dadHealthColor = '0xFFA5004D';
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/GF_assets');
