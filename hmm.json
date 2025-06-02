@@ -50,6 +50,11 @@
       "version": null
     },
     {
+      "name": "extension-webm",
+      "type": "haxelib",
+      "version": null
+    },
+    {
       "name": "actuate",
       "type": "haxelib",
       "version": null
